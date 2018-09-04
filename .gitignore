@@ -1,3 +1,11 @@
+*.atsuo
+*.atsln
+*.cproj
+*.eep
+*.lss
+*.srec
+*.mk
+Makefile
 # Prerequisites
 *.d
 
