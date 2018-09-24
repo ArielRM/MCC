@@ -58,3 +58,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+.Makefile
+.main.c
+.c_cpp_properties.json
+.tasks.json
+*/.vscode
+*.workspace

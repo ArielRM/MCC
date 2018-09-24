@@ -17,14 +17,7 @@
 #define F_CPU 16000000UL
 #endif
 
-#define DISPLAYSERIAL_PORT GPIO_B
-#define DISPLAYSERIAL_DATA PORTB0
-#define DISPLAYSERIAL_CLOCK PORTB1
-#define DISPLAYSERIAL_STROBE PORTB2
-
-
-void displaySerial_init();
+void displaySerial_init(GPIOx_Type *port, uint8_t dataPin, uint8_t clockPin, uint8_t strobePin, uint8_t num);
 void displaySerial_write(uint8_t val);
-
 
 #endif /* DISPLAYSERIAL_H_ */
