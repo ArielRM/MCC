@@ -8,9 +8,9 @@
 #define F_CPU 16000000UL
 #include <util/delay.h>
 
-#include "lib/displaySerial.h"
-#include "lib/avr_gpio.h"
-#include "lib/bits.h"
+#include "displaySerial.h"
+#include "avr_gpio.h"
+#include "bits.h"
 
 #define BOTAO_PORT GPIO_D
 #define BOTAO_PIN 2
@@ -35,14 +35,14 @@ int main(void)
 		// Debounce simples
 		while (GPIO_PinTstBit(BOTAO_PORT, BOTAO_PIN))
 		{
-			// Enquanto botão solto
+			// Enquanto botï¿½o solto
 		}
 		
 		displaySerial_write(++i);
 		
 		while (!GPIO_PinTstBit(GPIO_D, BOTAO_PIN))
 		{
-			// Enquanto botão pressionado
+			// Enquanto botï¿½o pressionado
 		}
 		_delay_ms(3);
 	}
