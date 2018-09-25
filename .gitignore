@@ -59,8 +59,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-.base
+.default
 */.vscode
 *.pdsprj
 *.pdsbak
 *.workspace
+newprj.sh
+avrlibs
