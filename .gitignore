@@ -62,3 +62,5 @@ dkms.conf
 .base
 */.vscode
 *.pdsprj
+*.pdsbak
+*.workspace
