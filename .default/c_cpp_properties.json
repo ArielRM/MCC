@@ -1,0 +1,22 @@
+{
+    "env": {
+        "DefaultInclude": [
+            "${workspaceFolder}/include/**"
+        ]
+    },
+    "configurations": [
+        {
+            "name": "AVR",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -iquoteinclude -iquote../avrlibs/lib",
+            "includePath": [
+                "${DefaultInclude}",
+                "${workspaceFolder}/../avrlibs/lib",
+                "/usr/lib/gcc/avr/4.9.2/include",
+                "/usr/lib/gcc/avr/4.9.2/include-fixed",
+                "/usr/lib/gcc/avr/4.9.2/../../../avr/include"
+            ]
+        }
+    ],
+    "version": 4
+}

@@ -59,10 +59,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-.default
+#.default
 */.vscode
 *.pdsprj
 *.pdsbak
 *.workspace
-newprj.sh
+#newprj.sh
 avrlibs
