@@ -1,7 +1,5 @@
 #include "matrix_keypad.h"
 
-#include <avr/pgmspace.h>
-
 #define CLR_GP(TYPE, PIN) ((MKP_GPIO_##PIN)->TYPE &= ~(1 << MKP_PIN_##PIN))
 #define SET_GP(TYPE, PIN) ((MKP_GPIO_##PIN)->TYPE |= (1 << MKP_PIN_##PIN))
 #define GET_GP(TYPE, PIN) ((MKP_GPIO_##PIN)->TYPE & (1 << MKP_PIN_##PIN))

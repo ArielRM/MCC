@@ -1,7 +1,5 @@
 #include "servo.h"
 
-#include <avr/io.h>
-
 void servo_init()
 {
 	DDRB |= (1 << PB1);
