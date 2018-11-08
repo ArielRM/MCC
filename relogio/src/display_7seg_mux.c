@@ -6,10 +6,10 @@
 #include "avr_gpio.h"
 #include "avr_timer.h"
 
-display_7seg_t displays[DISPLAY_7SEG_MUX_N_DISPLAYS];
-GPIOx_Type *SEGgpio;
-GPIOx_Type *MUXgpio;
-uint8_t muxMask;
+static display_7seg_t displays[DISPLAY_7SEG_MUX_N_DISPLAYS];
+static GPIOx_Type *SEGgpio;
+static GPIOx_Type *MUXgpio;
+static uint8_t muxMask;
 
 void display_7seg_mux_init(GPIOx_Type *segments, GPIOx_Type *mux, uint8_t isCC)
 {

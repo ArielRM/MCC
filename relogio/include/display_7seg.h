@@ -22,22 +22,9 @@ struct {
 }
 */
 
-static inline display_7seg_t display_7seg_create(uint8_t isCommonCathode)
-{
-    return isCommonCathode ? 0x01 : 0x00;
-}
-
-static inline void display_7seg_write(display_7seg_t d, GPIOx_Type *gpio)
-{
-    gpio->PORT = d >> 1;
-}
-
-static inline void display_7seg_off(display_7seg_t *d)
-{
-    (*d) = ((*d) & 0x01) - 0x01;
-    CPL_BIT((*d), 0);
-}
-
+display_7seg_t display_7seg_create(uint8_t isCommonCathode);
+void display_7seg_write(display_7seg_t d, GPIOx_Type *gpio);
+void display_7seg_off(display_7seg_t *d);
 void display_7seg_set(uint8_t value, display_7seg_t *d);
 
 #endif //DISPLAY_7SEG_H_INCLUDED

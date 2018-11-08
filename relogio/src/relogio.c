@@ -9,8 +9,17 @@
 
 #include "bits.h"
 
-uint8_t relogio[6] = {0};
-volatile uint8_t mode = 0;
+#define SEG_L 0
+#define SEG_H 1
+
+#define MIN_L 2
+#define MIN_H 3
+
+#define HOR_L 4
+#define HOR_H 5
+
+static uint8_t relogio[6] = {0};
+static volatile uint8_t mode = 0;
 
 void relogio_init(GPIOx_Type *segmentsGPIO, GPIOx_Type *mux_GPIO)
 {
@@ -32,14 +41,14 @@ void relogio_init(GPIOx_Type *segmentsGPIO, GPIOx_Type *mux_GPIO)
 
 uint8_t relogio_add_sec()
 {
-    relogio[0] += 1;
-    if (relogio[0] == 10)
+    relogio[SEG_L] += 1;
+    if (relogio[SEG_L] == 10)
     {
-        relogio[0] = 0;
-        relogio[1] += 1;
-        if (relogio[1] == 6)
+        relogio[SEG_L] = 0;
+        relogio[SEG_H] += 1;
+        if (relogio[SEG_H] == 6)
         {
-            relogio[1] = 0;
+            relogio[SEG_H] = 0;
             return 1;
         }
     }
@@ -48,14 +57,14 @@ uint8_t relogio_add_sec()
 
 uint8_t relogio_add_min()
 {
-    relogio[2] += 1;
-    if (relogio[2] == 10)
+    relogio[MIN_L] += 1;
+    if (relogio[MIN_L] == 10)
     {
-        relogio[2] = 0;
-        relogio[3] += 1;
-        if (relogio[3] == 6)
+        relogio[MIN_L] = 0;
+        relogio[MIN_H] += 1;
+        if (relogio[MIN_H] == 6)
         {
-            relogio[3] = 0;
+            relogio[MIN_H] = 0;
             return 1;
         }
     }
@@ -64,16 +73,16 @@ uint8_t relogio_add_min()
 
 uint8_t relogio_add_hor()
 {
-    relogio[4] += 1;
-    if (relogio[4] == 10)
+    relogio[HOR_L] += 1;
+    if (relogio[HOR_L] == 10)
     {
-        relogio[4] = 0;
-        relogio[5] += 1;
+        relogio[HOR_L] = 0;
+        relogio[HOR_H] += 1;
     }
-    else if (relogio[5] == 2 && relogio[4] == 4)
+    else if (relogio[HOR_H] == 2 && relogio[HOR_L] == 4)
     {
-        relogio[5] = 0;
-        relogio[4] = 0;
+        relogio[HOR_H] = 0;
+        relogio[HOR_L] = 0;
         return 1;
     }
     return 0;
@@ -99,7 +108,7 @@ void relogio_add()
     }
 }
 
-uint8_t change_mode()
+uint8_t relogio_change_mode()
 {
     mode++;
     if (mode == 4)
@@ -109,7 +118,14 @@ uint8_t change_mode()
     return mode;
 }
 
-uint8_t get_mode()
+void relogio_clear_seconds()
+{
+    relogio[SEG_L] = 0;
+    relogio[SEG_H] = 0;
+    display_7seg_mux_set_all(relogio);
+}
+
+uint8_t relogio_get_mode()
 {
     return mode;
 }

@@ -11,7 +11,8 @@ uint8_t relogio_add_min();
 uint8_t relogio_add_hor();
 void relogio_add();
 
-uint8_t change_mode();
-uint8_t get_mode();
+uint8_t relogio_change_mode();
+uint8_t relogio_get_mode();
+void relogio_clear_seconds();
 
 #endif // RELOGIO_H_INCLUDED

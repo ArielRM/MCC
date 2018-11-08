@@ -48,18 +48,21 @@ int main(void)
 
 ISR(PCINT1_vect)
 {
-	if (!GPIO_PinTstBit(GPIO_C, PCINT8))
+	if (!GPIO_PinTstBit(BT_GPIO, PCINT8))
 	{
-		if (change_mode() == 0)
+		if (relogio_change_mode() == 0)
 		{
 			EXT_IRQ_PCINT_MASK->PCMASK1.BITS.PCINT_9 = 0;
 		}
 		else
 		{
+			relogio_clear_seconds();
+			if (relogio_get_mode() == 1)
+				relogio_change_mode(2);
 			EXT_IRQ_PCINT_MASK->PCMASK1.BITS.PCINT_9 = 1;
 		}
 	}
-	else if (!GPIO_PinTstBit(GPIO_C, PCINT9))
+	else if (!GPIO_PinTstBit(BT_GPIO, PCINT9))
 	{
 		relogio_add();
 	}
