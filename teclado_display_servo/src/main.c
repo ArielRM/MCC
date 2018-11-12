@@ -9,8 +9,7 @@
 #include "matrix_keypad.h"
 #include "servo.h"
 
-enum state_enum
-{
+static enum {
 	READ_0,
 	READ_1,
 	READ_2,
@@ -19,7 +18,7 @@ enum state_enum
 	CLEAR
 } state;
 
-union buffer_enum {
+static union {
 	uint16_t total : 12;
 	struct
 	{
